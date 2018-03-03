@@ -1,6 +1,7 @@
 package com.clockytheandroidclock.morningwood;
 
 import android.app.AlarmManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -77,7 +78,9 @@ public class mainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //method that changes the update text
-                set_alarm_text("Alarm Off");
+                //TODO: Temporary use that btn to move to QuizActivity
+                //set_alarm_text("Alarm Off");
+                doQuiz();
             }
         });
 
@@ -108,5 +111,10 @@ public class mainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void doQuiz() {
+        Intent intent = new Intent(mainActivity.this, QuizActivity.class);
+        startActivity(intent);
     }
 }
