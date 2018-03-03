@@ -1,6 +1,7 @@
 package com.clockytheandroidclock.morningwood;
 
 import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,6 +14,8 @@ import android.widget.TimePicker;
 import android.widget.TextView;
 import android.content.Context;
 import android.widget.Button;
+import android.content.Intent;
+
 
 import java.util.Calendar;
 
@@ -24,7 +27,7 @@ public class mainActivity extends AppCompatActivity {
     TimePicker alarm_timepicker;
     TextView update_text;
     Context context;
-
+    PendingIntent pending_intent;
 
 
     @Override
@@ -47,6 +50,8 @@ public class mainActivity extends AppCompatActivity {
         //create instance of a calendar
         final Calendar calendar = Calendar.getInstance();
 
+        final Intent my_intent = new Intent(this.context, AlarmReceiver.class);
+
         Button startAlarm = (Button) findViewById(R.id.Alarm_On);
 
         //make an onclick listener
@@ -64,8 +69,24 @@ public class mainActivity extends AppCompatActivity {
                 String hour_string = String.valueOf(hour);
                 String minute_string = String.valueOf(minute);
 
+                if(hour > 12){
+                    hour_string = String.valueOf(hour - 12);
+                }
+
+                if(minute < 10){
+                    minute_string = "0" + String.valueOf(minute);
+                }
                 //method that changes the update text
-                set_alarm_text("Alarm On");
+                set_alarm_text("Alarm set to: " + hour_string + ":" + minute_string);
+
+                //create a pending intent that delays intent
+                //until specified calendar time
+                pending_intent = PendingIntent.getBroadcast(mainActivity.this,
+                        0, my_intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+                //set the alarm manager
+                alarm_manager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                        pending_intent);
             }
         });
 

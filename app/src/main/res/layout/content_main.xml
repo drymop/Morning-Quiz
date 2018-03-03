@@ -10,43 +10,62 @@
 
     <TimePicker
         android:id="@+id/timePicker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="64dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/update_text"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="379dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="52dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginTop="52dp"
+        android:timePickerMode="spinner"
+        app:layout_constraintBottom_toTopOf="@+id/Alarm_Off"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/Alarm_On"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="38dp"
+        android:layout_marginEnd="60dp"
         android:layout_marginStart="16dp"
-        android:text="@string/turn_on_alarm"
+        android:layout_marginTop="52dp"
+        android:text="Edit Alarm"
+        app:layout_constraintEnd_toStartOf="@+id/Alarm_Off"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/timePicker" />
-
-    <Button
-        android:id="@+id/Alarm_Off"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:text="@string/turn_off_alarm"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/timePicker" />
 
     <TextView
         android:id="@+id/update_text"
-        android:layout_width="154dp"
-        android:layout_height="0dp"
-        android:gravity="center"
+        android:layout_width="142dp"
+        android:layout_height="46dp"
         android:layout_marginBottom="18dp"
+        android:gravity="center"
         android:text="@string/did_you_set_the_alarm"
         android:textAppearance="@style/TextAppearance.AppCompat"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/timePicker"
+        app:layout_constraintVertical_bias="0.779" />
+
+    <Spinner
+        android:id="@+id/spinner2"
+        android:layout_width="184dp"
+        android:layout_height="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/timePicker" />
+
+    <Button
+        android:id="@+id/Alarm_Off"
+        android:layout_width="159dp"
+        android:layout_height="39dp"
+        android:layout_marginBottom="160dp"
+        android:layout_marginEnd="18dp"
+        android:text="Alarm Off"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/Alarm_On"
         app:layout_constraintTop_toBottomOf="@+id/timePicker" />
 
 </android.support.constraint.ConstraintLayout>
