@@ -32,6 +32,7 @@ public class RingtonePlayingService extends Service {
     }
 
     public void onDestroy() {
-        Toast.makeText(this, "on Destroy called", Toast.LENGTH_SHORT).show();
+        media_song.stop();
+        super.onDestroy();
     }
 }

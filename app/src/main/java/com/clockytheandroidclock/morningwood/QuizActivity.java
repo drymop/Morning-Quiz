@@ -1,8 +1,8 @@
 package com.clockytheandroidclock.morningwood;
 
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.graphics.Color;
-import android.graphics.drawable.AnimationDrawable;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +14,10 @@ import android.widget.TextView;
 import java.util.Random;
 
 public class QuizActivity extends AppCompatActivity {
+
+    private int NUM_QUESTIONS = 3;
+
+    private int remainingQuestions;
 
     private int correctButtonId = -1;
 
@@ -29,8 +33,21 @@ public class QuizActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
+        remainingQuestions = NUM_QUESTIONS;
         setQuestion();
+        startMusic();
     }
+
+    public void startMusic() {
+        Intent serviceIntent = new Intent(this, RingtonePlayingService.class);
+        startService(serviceIntent);
+    }
+
+    public void stopMusic() {
+        //executor.shutdown();
+        stopService(new Intent(this, RingtonePlayingService.class));
+    }
+
 
     public void setQuestion() {
         Random rnd = new Random();
@@ -71,18 +88,28 @@ public class QuizActivity extends AppCompatActivity {
      * @param view clicked view
      */
     public void onClick(final View view) {
-
+        // color the correct button
         final Drawable saveBackground = findViewById(correctButtonId).getBackground();
         int color = (view.getId() == correctButtonId)? Color.GREEN : Color.RED;
-
         view.setBackgroundColor(color);
 
+        if (view.getId() == correctButtonId) {
+            remainingQuestions--;
+            if (remainingQuestions == 0) {
+                stopMusic();
+                Intent intent = new Intent(this, mainActivity.class);
+                startActivity(intent);
+                return;
+            }
+        } else {
+            remainingQuestions++;
+        }
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 view.setBackgroundDrawable(saveBackground);
                 setQuestion();
             }
-        }, 400);
+        }, 300);
     }
 }

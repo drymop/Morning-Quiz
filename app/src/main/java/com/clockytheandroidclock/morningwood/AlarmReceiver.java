@@ -13,7 +13,7 @@ public class AlarmReceiver extends BroadcastReceiver{
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        Log.e("In the receiver!", "Hi");
+        /*Log.e("In the receiver!", "Hi");
 
         Intent service_intent = new Intent(context, RingtonePlayingService.class);
         Log.e("Service intent created!", "Hi");
@@ -21,7 +21,9 @@ public class AlarmReceiver extends BroadcastReceiver{
 
         //start the ringtone service
         context.startService(service_intent);
-        Log.e("Service has been called", "Hi");
+        Log.e("Service has been called", "Hi");*/
 
+        Intent actIntent = new Intent(context, QuizActivity.class);
+        context.startActivity(actIntent);
     }
 }

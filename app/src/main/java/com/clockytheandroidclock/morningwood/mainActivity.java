@@ -100,8 +100,8 @@ public class mainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //method that changes the update text
                 //TODO: Temporary use that btn to move to QuizActivity
-                //set_alarm_text("Alarm Off");
-                doQuiz();
+                set_alarm_text("Alarm Off");
+                //doQuiz();
             }
         });
 
